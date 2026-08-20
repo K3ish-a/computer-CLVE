@@ -237,13 +237,6 @@ setInterval(() => {
 window.addEventListener("beforeunload", () => {
     localStorage.setItem("musicTime", music.currentTime);
 });
-<p id="testTime"></p>
-
-</script>
-
-<script>
-document.getElementById("testTime").textContent =
-    "Saved time: " + localStorage.getItem("musicTime");
 </script>
 
 
