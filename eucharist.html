@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eucharist | Sacraments</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="musicPrompt">
+    ♫⋆｡♪₊˚♬゚。Tap to enable background music
+</div>
+
+<header><div class="container nav"><a class="brand" href="index.html">✦ Sacraments</a><nav>
+<a href="index.html">Home</a>
+<a href="jesus.html">Jesus</a>
+<a href="baptism.html">Baptism</a>
+<a href="confirmation.html">Confirmation</a>
+<a href="eucharist.html">Eucharist</a>
+<a href="reconciliation.html">Penance</a>
+<a href="anointing.html">Anointing</a>
+<a href="orders.html">Holy Orders</a>
+<a href="matrimony.html">Matrimony</a>
+</nav></div></header>
+
+<main>
+<section class="page-hero"><div class="container"><div class="hero-mini">
+<div><div class="kicker">Sacrament of Initiation</div><h1>✦•┈๑⋅⋯Eucharist⋯⋅๑┈•✦</h1>
+<p class="lead">It is also known as the Lord’s Supper or the Holy Communion, as it is the sacrament that Jesus introducd during his Last Supper. Additionally, it involves the bread and wine in where it becomes the real or symbolic Body and Blood of Christ. It is consumed as a way of remembering the sacrifices Jesus endured.
+
+The Eucharist serves as the foundational act of Christian worship. It continously brings Christ’s sacrifice into the present which strengthens one’s faith and trust to God. By regularly recieving it, one can actively commit to their faith and connection to one another.</p></div>
+</div></div></section>
+<section class="section"><div class="container detail">
+<div class="info-box"><div class="kicker">Learn</div><h2>₊˚⊹ ᰔMeaning & celebration₊˚⊹ ᰔ</h2>
+<p>In the Holy Eucharist, one deepens the relationship with Jesus while providing the guidance to ignore temptations in their life. It cleans one from minor sins, inspires charity, and strengthens resilience to get past daily challenges.</p>
+<ul><li><strong>Key sign:</strong> Bread and wine</li><li><strong>Effect:</strong> The Eucharist nourishes faith, unites the Church, and calls Christians to live in love and service.</li></ul>
+<div class="quote">The sacraments are encounters with Christ that draw the Church into a life of faith, worship, and mission.</div>
+<p><strong>Why it matters:</strong> The Eucharist serves as the guide for one to follow Jesus’ teachings and implement it in their daily routine.  After recieving this sacrament, one can be called to serve others, show compassion, and promote peace in their community.
+</p>
+</div>
+<div>
+<div class="icon">
+  <img src="images/photo4.jpg" alt="photo 4">
+</div>
+<div class="media" style="margin-top:18px"><h3>Short video</h3>
+<div class="media" style="margin-top:18px">
+
+    <iframe
+        width="100%"
+        height="240"
+        style="border:0;border-radius:15px"
+        src="https://www.youtube.com/embed/dhjhhAkgWfc?enablejsapi=1"
+        title="The Sacrament of the Holy Eucharist"
+        allowfullscreen>
+    </iframe>
+
+    <p class="note">
+        Learn more about the Sacrament of the Holy Eucharist.
+    </p>
+
+</div>
+</div>
+</div></section>
+</main>
+
+<footer>
+ <div class="container footer-grid">
+  <div><h3 style="color:#fff">✦.──Continue your Journey of Faith──.✦</h3>
+</footer>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="backgroundMusic" loop preload="auto">
+    <source src="Awit ng Paghahangad Instrumental.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("backgroundMusic");
+
+// Remember where the song was
+const savedTime = localStorage.getItem("musicTime");
+
+if (savedTime) {
+    music.currentTime = parseFloat(savedTime);
+}
+
+// Start music after the first interaction
+function startMusic() {
+    music.play().then(() => {
+        const prompt = document.getElementById("musicPrompt");
+
+        if (prompt) {
+            prompt.style.display = "none";
+        }
+
+        localStorage.setItem("musicEnabled", "true");
+    }).catch(() => {});
+}
+
+document.addEventListener("click", startMusic);
+document.addEventListener("touchstart", startMusic);
+
+// Save the current position
+setInterval(() => {
+    if (!music.paused) {
+        localStorage.setItem("musicTime", music.currentTime);
+    }
+}, 200);
+</script>
+
+
+<!-- YOUTUBE VIDEO CONTROL -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+let players = [];
+
+function onYouTubeIframeAPIReady() {
+    document.querySelectorAll("iframe[src*='youtube.com/embed/']").forEach((iframe) => {
+        players.push(new YT.Player(iframe, {
+            events: {
+                onStateChange: function(event) {
+                    const music = document.getElementById("backgroundMusic");
+
+                    if (event.data === YT.PlayerState.PLAYING) {
+                        music.pause();
+                    }
+
+                    if (
+                        event.data === YT.PlayerState.ENDED ||
+                        event.data === YT.PlayerState.PAUSED
+                    ) {
+                        music.play().catch(() => {});
+                    }
+                }
+            }
+        }));
+    });
+}
+
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        music.pause();
+    }
+});
+
+window.addEventListener("pagehide", () => {
+    music.pause();
+});
+
+</script>
+
+</body>
+</html>

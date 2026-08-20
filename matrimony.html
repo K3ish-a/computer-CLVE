@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrimony | Sacraments</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="musicPrompt">
+    ♫⋆｡♪₊˚♬゚。Tap to enable background music
+</div>
+
+<header><div class="container nav"><a class="brand" href="index.html">✦ Sacraments</a><nav>
+<a href="index.html">Home</a>
+<a href="jesus.html">Jesus</a>
+<a href="baptism.html">Baptism</a>
+<a href="confirmation.html">Confirmation</a>
+<a href="eucharist.html">Eucharist</a>
+<a href="reconciliation.html">Penance</a>
+<a href="anointing.html">Anointing</a>
+<a href="orders.html">Holy Orders</a>
+<a href="matrimony.html">Matrimony</a>
+</nav></div></header>
+
+<main>
+<section class="page-hero"><div class="container"><div class="hero-mini">
+<div><div class="kicker">Sacrament of Vocation</div><h1>✦•┈๑⋅⋯Matrimony⋯⋅๑┈•✦</h1>
+<p class="lead">the state of two people being married and the lifelong union between two people. It is also when spouses make vows to stay and love each other for the rest of their lives. The two people must stay and not betray one another because it is a sin to commit any other type of adultery or romantic connection with another person while already being a married man/woman.</p></div>
+</div></div></section>
+<section class="section"><div class="container detail">
+<div class="info-box"><div class="kicker">Learn</div><h2>₊˚⊹ ᰔMeaning & celebration₊˚⊹ ᰔ</h2>
+<p>Matrimony is the covenant by which a baptized man and woman establish a lifelong partnership ordered toward the good of the spouses and the family.</p>
+<ul><li><strong>Key sign:</strong> Marriage vows</li><li><strong>Effect:</strong> The sacrament strengthens spouses to live faithful, loving, and fruitful Christian family life.</li></ul>
+<div class="quote">The sacraments are encounters with Christ that draw the Church into a life of faith, worship, and mission.</div>
+<p><strong>Why it matters:</strong> This sacrament is not merely a ceremony; it points to God’s action and invites the Christian community to respond with faith and love.</p>
+</div>
+<div>
+   <div class="icon">
+  <img src="images/photo9.jpg" alt="photo 9">
+</div>
+<div class="media" style="margin-top:18px"><h3>Short video</h3>
+ <iframe
+        width="100%"
+        height="240"
+        style="border:0;border-radius:15px"
+        src="https://www.youtube.com/embed/JpdpApbGWlI?enablejsapi=1"
+        title="The Sacrament of Marriage"
+        allowfullscreen>
+    </iframe>
+
+    <p class="note">
+        Learn more about the Sacrament of Marriage
+    </p>
+
+</div>
+</div></section>
+</main>
+
+<footer>
+ <div class="container footer-grid">
+  <div><h3 style="color:#fff">✦.──Continue Your Journey of Faith──.✦</h3>
+  </div>
+ </div>
+</footer>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="backgroundMusic" loop preload="auto">
+    <source src="Awit ng Paghahangad Instrumental.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("backgroundMusic");
+
+// Remember where the song was
+const savedTime = localStorage.getItem("musicTime");
+
+if (savedTime) {
+    music.currentTime = parseFloat(savedTime);
+}
+
+// Start music after the first interaction
+function startMusic() {
+    music.play().then(() => {
+        const prompt = document.getElementById("musicPrompt");
+
+        if (prompt) {
+            prompt.style.display = "none";
+        }
+
+        localStorage.setItem("musicEnabled", "true");
+    }).catch(() => {});
+}
+
+document.addEventListener("click", startMusic);
+document.addEventListener("touchstart", startMusic);
+
+// Save the current position
+setInterval(() => {
+    if (!music.paused) {
+        localStorage.setItem("musicTime", music.currentTime);
+    }
+}, 200);
+</script>
+
+
+<!-- YOUTUBE VIDEO CONTROL -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+let players = [];
+
+function onYouTubeIframeAPIReady() {
+    document.querySelectorAll("iframe[src*='youtube.com/embed/']").forEach((iframe) => {
+        players.push(new YT.Player(iframe, {
+            events: {
+                onStateChange: function(event) {
+                    const music = document.getElementById("backgroundMusic");
+
+                    if (event.data === YT.PlayerState.PLAYING) {
+                        music.pause();
+                    }
+
+                    if (
+                        event.data === YT.PlayerState.ENDED ||
+                        event.data === YT.PlayerState.PAUSED
+                    ) {
+                        music.play().catch(() => {});
+                    }
+                }
+            }
+        }));
+    });
+}
+
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        music.pause();
+    }
+});
+
+window.addEventListener("pagehide", () => {
+    music.pause();
+});
+
+</script>
+
+</body>
+</html>

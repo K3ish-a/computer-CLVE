@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Confirmation | The Seven Sacraments</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+
+<body>
+<div id="musicPrompt">
+    ♫⋆｡♪₊˚♬゚。Tap to enable background music
+</div>
+
+    <header>
+
+        <h1>Confirmation</h1>
+
+        <p>
+            Strengthened by the Holy Spirit
+        </p>
+
+    </header>
+
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="jesus.html">Jesus</a>
+
+        <a href="baptism.html">Baptism</a>
+
+        <a href="confirmation.html">Confirmation</a>
+
+        <a href="eucharist.html">Eucharist</a>
+
+        <a href="reconciliation.html">Reconciliation</a>
+
+        <a href="anointing.html">Anointing</a>
+
+        <a href="holy-orders.html">Holy Orders</a>
+
+        <a href="matrimony.html">Matrimony</a>
+
+    </nav>
+
+
+    <main>
+
+
+        <!-- INTRODUCTION -->
+
+        <section class="hero">
+
+
+            <div class="hero-text">
+
+                <p class="small-title">
+                    SACRAMENT OF INITIATION
+                </p>
+
+
+                <h2>
+                    Strengthened<br>
+                    by the Spirit
+                </h2>
+
+
+                <p>
+                    Confirmation is a Sacrament of Initiation that is often described the 'the perfection of Baptism". 
+Through the renewal of vows, the laying on of hands, and 
+the anointing with Chrism, Christians renew and reaffirm their faith while receiving a special outpouring of the Holy Spirit.
+                </p>
+
+
+                <p>
+                    Confirmation calls Christians to become
+                    stronger witnesses of Christ and to participate
+                    more actively in the mission of the Church.
+                </p>
+
+
+            </div>
+
+
+            <div class="hero-card">
+
+<div class="icon">
+  <img src="images/photo3.jpg" alt="photo 3">
+</div>
+
+
+                <p>
+                    The Holy Spirit strengthens us to live,
+                    defend, and share our faith.
+                </p>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- MEANING -->
+
+        <section>
+
+
+            <p class="small-title">
+                UNDERSTANDING CONFIRMATION
+            </p>
+
+
+            <h2>
+                What happens in Confirmation?
+            </h2>
+
+
+            <div class="sacrament-grid">
+
+
+                <div class="sacrament-card">
+
+                
+
+                    <h3>
+                        Holy Spirit
+                    </h3>
+
+                    <p>
+              Through the sacrament of confirmation, a Christian receives a deeper union with God the Father and Jesus Christ, the seven gifts of the Holy Spirit to guide and watch over moral actions, special strength to publicly spread and defend their faith and to never be ashamed of the cross.  
+                    </p>
+
+                </div>
+
+
+
+                <div class="sacrament-card">
+
+                  
+                    <h3>
+                        Sacred Chrism
+                    </h3>
+
+                    <p>
+                        Sacred chrism, a blessed oil, is used
+                        during the anointing of the person being
+                        confirmed.
+                    </p>
+
+                </div>
+
+
+
+                <div class="sacrament-card">
+
+
+                    <h3>
+                        Gifts of the Spirit
+                    </h3>
+
+                    <p>
+                        Confirmation deepens our baptismal life and relationship by God as it seals the Holy Spirit within us — blessing us with its 7 gifts. This sacrament also helps us to confidently live out, defend, and spread our faith. 
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- SIGNS -->
+
+        <section class="about">
+
+
+            <h2>
+                Signs and Symbols♡
+            </h2>
+
+
+            <p>
+                 <strong>Chrism Oil</strong> — symbolizes being
+                sealed and strengthened by the Holy Spirit.
+            </p>
+
+
+            <p>
+                 <strong>Dove</strong> — represents the
+                Holy Spirit.
+            </p>
+
+
+            <p>
+                 <strong>Fire</strong> — symbolizes the power
+                and presence of the Holy Spirit.
+            </p>
+
+
+            <p>
+                 <strong>Laying on of Hands</strong> —
+                expresses the invocation of the Holy Spirit.
+            </p>
+
+
+        </section>
+
+
+
+        <!-- EFFECT -->
+
+        <section>
+
+
+            <p class="small-title">
+                WHY IT MATTERS
+            </p>
+
+
+            <h2>
+                Living as a Witness
+            </h2>
+
+
+            <div class="hero-card">
+
+
+                <p>
+                    Confirmation connects to the Christian life as it is the sacrament that completes the grace of baptism. The believer is sealed with the Holy Spirit and blessed with its 7 gifts, and is given the strength to be an active and faithful member of the Church and witness of Christ.
+                </p>
+ 
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <footer>
+
+
+        <h3>
+            ✦.──Continue Your Journey of Faith──.✦
+        </h3>
+
+
+    </footer>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="backgroundMusic" loop preload="auto">
+    <source src="Awit ng Paghahangad Instrumental.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("backgroundMusic");
+
+// Remember where the song was
+const savedTime = localStorage.getItem("musicTime");
+
+if (savedTime) {
+    music.currentTime = parseFloat(savedTime);
+}
+
+// Start music after the first interaction
+function startMusic() {
+    music.play().then(() => {
+        const prompt = document.getElementById("musicPrompt");
+
+        if (prompt) {
+            prompt.style.display = "none";
+        }
+
+        localStorage.setItem("musicEnabled", "true");
+    }).catch(() => {});
+}
+
+document.addEventListener("click", startMusic);
+document.addEventListener("touchstart", startMusic);
+
+// Save the current position
+setInterval(() => {
+    if (!music.paused) {
+        localStorage.setItem("musicTime", music.currentTime);
+    }
+}, 200);
+</script>
+
+
+<!-- YOUTUBE VIDEO CONTROL -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+let players = [];
+
+function onYouTubeIframeAPIReady() {
+    document.querySelectorAll("iframe[src*='youtube.com/embed/']").forEach((iframe) => {
+        players.push(new YT.Player(iframe, {
+            events: {
+                onStateChange: function(event) {
+                    const music = document.getElementById("backgroundMusic");
+
+                    if (event.data === YT.PlayerState.PLAYING) {
+                        music.pause();
+                    }
+
+                    if (
+                        event.data === YT.PlayerState.ENDED ||
+                        event.data === YT.PlayerState.PAUSED
+                    ) {
+                        music.play().catch(() => {});
+                    }
+                }
+            }
+        }));
+    });
+}
+
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        music.pause();
+    }
+});
+
+window.addEventListener("pagehide", () => {
+    music.pause();
+});
+
+</script>
+
+</body>
+</html>

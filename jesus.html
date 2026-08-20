@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jesus as the Primordial Sacrament</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+<div id="musicPrompt">
+    ♫⋆｡♪₊˚♬゚。Tap to enable background music
+</div>
+    <header>
+
+        <h1>Jesus as the Primordial Sacramentᯓ★</h1>
+
+        <p>
+            The Visible Sign of God's Loveᥫ᭡
+        </p>
+
+    </header>
+
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="jesus.html">Jesus</a>
+
+        <a href="baptism.html">Baptism</a>
+
+        <a href="confirmation.html">Confirmation</a>
+
+        <a href="eucharist.html">Eucharist</a>
+
+        <a href="reconciliation.html">Reconciliation</a>
+
+        <a href="anointing.html">Anointing</a>
+
+        <a href="holy-orders.html">Holy Orders</a>
+
+        <a href="matrimony.html">Matrimony</a>
+
+    </nav>
+
+
+    <main>
+
+
+        <section class="hero">
+
+            <div class="hero-text">
+
+                <p class="small-title">
+                    JESUS CHRIST
+                </p>
+
+                <h2>
+                    The Primordial<br>
+                    Sacrament
+                </h2>
+
+                <p>
+                    Primordial means first, original, or fundamental. Jesus is called the Primordial Sacrament because He is the fullest and original 
+visible expression of God’s love and grace. He is the perfect sign and presence of God’s love among humanity. 
+                </p>
+
+                <p>
+                    Through His words, actions, compassion, death,
+                    and resurrection, Jesus reveals who God is and
+                    invites us into a relationship with Him.
+                </p>
+
+            </div>
+
+
+            <div class="hero-card">
+
+<div class="icon">
+  <img src="images/photo1.jpg" alt="photo 1">
+</div>
+
+              
+        </section>
+
+
+        <section>
+
+            <p class="small-title">
+                UNDERSTANDING THE SACRAMENT
+            </p>
+
+            <h2>
+                Why is Jesus called a sacrament?
+            </h2>
+
+
+            <div class="sacrament-grid">
+
+
+                <div class="sacrament-card">
+
+
+                    <h3>
+                        Visible
+                    </h3>
+
+                    <p>
+                        Jesus lived among humanity and made God's
+                        love visible through His life and ministry.
+                    </p>
+
+                </div>
+
+
+                <div class="sacrament-card">
+
+
+                    <h3>
+                        God's Love
+                    </h3>
+
+                    <p>
+                        Jesus shows us the Father's mercy,
+                        compassion, forgiveness, and love.
+                    </p>
+
+                </div>
+
+
+                <div class="sacrament-card">
+
+                    <h3>
+                        God's Grace
+                    </h3>
+
+                    <p>
+                        Through Christ, we receive God's grace
+                        and are invited to live a life of faith.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <section class="about">
+
+            <h2>
+                Jesus and the Seven Sacraments
+            </h2>
+
+            <p>
+                The Seven Sacraments were instituted by Christ
+                and entrusted to the Church. They are sacred signs
+                through which God's grace is communicated to us.
+                Through the sacraments, Christ continues to be
+                present and active in the life of the Church.
+            </p>
+
+            <br>
+
+            <p>
+                The Church therefore continues Christ's mission
+                by celebrating the sacraments and helping people
+                encounter God's grace throughout their lives.
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
+
+        <h3>
+            ✦.──Continue Your Journey of Faith──.✦
+        </h3>
+
+        <p>
+            Kindly Explore the Seven Sacraments using the navigation above❤︎‬
+        </p>
+
+        <p>
+            “Whoever has seen me has seen the Father.” — John 14:9 ᥫ᭡
+        </p>
+
+    </footer>
+<!-- BACKGROUND MUSIC -->
+<audio id="backgroundMusic" loop preload="auto">
+    <source src="Awit ng Paghahangad Instrumental.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("backgroundMusic");
+
+// Remember where the song was
+const savedTime = localStorage.getItem("musicTime");
+
+if (savedTime) {
+    music.currentTime = parseFloat(savedTime);
+}
+
+// Start music after the first interaction
+function startMusic() {
+    music.play().then(() => {
+        const prompt = document.getElementById("musicPrompt");
+
+        if (prompt) {
+            prompt.style.display = "none";
+        }
+
+        localStorage.setItem("musicEnabled", "true");
+    }).catch(() => {});
+}
+
+document.addEventListener("click", startMusic);
+document.addEventListener("touchstart", startMusic);
+
+// Save the current position
+setInterval(() => {
+    if (!music.paused) {
+        localStorage.setItem("musicTime", music.currentTime);
+    }
+}, 200);
+</script>
+
+
+<!-- YOUTUBE VIDEO CONTROL -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+let players = [];
+
+function onYouTubeIframeAPIReady() {
+    document.querySelectorAll("iframe[src*='youtube.com/embed/']").forEach((iframe) => {
+        players.push(new YT.Player(iframe, {
+            events: {
+                onStateChange: function(event) {
+                    const music = document.getElementById("backgroundMusic");
+
+                    if (event.data === YT.PlayerState.PLAYING) {
+                        music.pause();
+                    }
+
+                    if (
+                        event.data === YT.PlayerState.ENDED ||
+                        event.data === YT.PlayerState.PAUSED
+                    ) {
+                        music.play().catch(() => {});
+                    }
+                }
+            }
+        }));
+    });
+}
+
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        music.pause();
+    }
+});
+
+window.addEventListener("pagehide", () => {
+    music.pause();
+});
+
+</script>
+
+</body>
+
+</html>

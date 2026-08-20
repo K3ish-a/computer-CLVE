@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reconciliation / Penance | Sacraments</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="musicPrompt">
+   ♫⋆｡♪₊˚♬゚。Tap to enable background music
+</div>
+
+<header><div class="container nav"><a class="brand" href="index.html">✦ Sacraments</a><nav>
+<a href="index.html">Home</a>
+<a href="jesus.html">Jesus</a>
+<a href="baptism.html">Baptism</a>
+<a href="confirmation.html">Confirmation</a>
+<a href="eucharist.html">Eucharist</a>
+<a href="reconciliation.html">Penance</a>
+<a href="anointing.html">Anointing</a>
+<a href="orders.html">Holy Orders</a>
+<a href="matrimony.html">Matrimony</a>
+</nav></div></header>
+
+<main>
+<section class="page-hero"><div class="container"><div class="hero-mini">
+<div><div class="kicker">Sacrament of Healing</div><h1>✦•┈๑⋅⋯Reconciliation⋯⋅๑┈•✦</h1>
+<p class="lead">	It is when us people confess our sins and repent to ask for God's forgiveness. When we confess our sins to the priest and to God, all of our mistakes will be forgiven even if we forget or intentionally hide some of it because God will always forgive us no matter how big the sin that we have committed.</p></div>
+</div></div></section>
+<section class="section"><div class="container detail">
+<div class="info-box"><div class="kicker">Learn</div><h2>₊˚⊹ ᰔMeaning & celebration₊˚⊹ ᰔ</h2>
+<p>In Reconciliation, a person turns back to God, confesses sins, receives absolution, and experiences the healing mercy of Christ through the ministry of the Church.</p>
+<ul><li><strong>Key sign:</strong> Contrition and absolution</li><li><strong>Effect:</strong> The sacrament restores communion with God and the Church and encourages conversion and a renewed life.</li></ul>
+<div class="quote">The sacraments are encounters with Christ that draw the Church into a life of faith, worship, and mission.</div>
+<p><strong>Why it matters:</strong> This sacrament is not merely a ceremony; it points to God’s action and invites the Christian community to respond with faith and love.</p>
+</div>
+<div>
+   <div class="icon">
+  <img src="images/photo6.jpg" alt="photo 6">
+</div>
+<div class="media" style="margin-top:18px"><h3>Short video</h3>
+ <iframe
+        width="100%"
+        height="240"
+        style="border:0;border-radius:15px"
+        src="https://www.youtube.com/embed/pmDkBFlDDes?enablejsapi=1"
+        title="The Sacrament of the Reconciliation"
+        allowfullscreen>
+    </iframe>
+
+    <p class="note">
+        Learn more about the Sacrament of Reconciliation
+    </p>
+
+</div>
+</div></section>
+</main>
+
+
+<footer>
+ <div class="container footer-grid">
+  <div><h3 style="color:#fff">✦.──Continue Your Journey of Faith──.✦</h3>
+  </div>
+ </div>
+</footer>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="backgroundMusic" loop preload="auto">
+    <source src="Awit ng Paghahangad Instrumental.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("backgroundMusic");
+
+// Remember where the song was
+const savedTime = localStorage.getItem("musicTime");
+
+if (savedTime) {
+    music.currentTime = parseFloat(savedTime);
+}
+
+// Start music after the first interaction
+function startMusic() {
+    music.play().then(() => {
+        const prompt = document.getElementById("musicPrompt");
+
+        if (prompt) {
+            prompt.style.display = "none";
+        }
+
+        localStorage.setItem("musicEnabled", "true");
+    }).catch(() => {});
+}
+
+document.addEventListener("click", startMusic);
+document.addEventListener("touchstart", startMusic);
+
+// Save the current position
+setInterval(() => {
+    if (!music.paused) {
+        localStorage.setItem("musicTime", music.currentTime);
+    }
+}, 200);
+</script>
+
+
+<!-- YOUTUBE VIDEO CONTROL -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+let players = [];
+
+function onYouTubeIframeAPIReady() {
+    document.querySelectorAll("iframe[src*='youtube.com/embed/']").forEach((iframe) => {
+        players.push(new YT.Player(iframe, {
+            events: {
+                onStateChange: function(event) {
+                    const music = document.getElementById("backgroundMusic");
+
+                    if (event.data === YT.PlayerState.PLAYING) {
+                        music.pause();
+                    }
+
+                    if (
+                        event.data === YT.PlayerState.ENDED ||
+                        event.data === YT.PlayerState.PAUSED
+                    ) {
+                        music.play().catch(() => {});
+                    }
+                }
+            }
+        }));
+    });
+}
+
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        music.pause();
+    }
+});
+
+window.addEventListener("pagehide", () => {
+    music.pause();
+});
+
+</script>
+
+</body>
+
+</html>

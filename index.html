@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Seven Sacraments</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div id="musicPrompt">
+    ♫⋆｡♪₊˚♬゚。Tap to enable background music
+</div>
+
+    <header>
+        <h1>The Seven Sacraments</h1>
+
+        <p>
+            Encounters with God's Grace
+        </p>
+    </header>
+
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="jesus.html">Jesus</a>
+        <a href="baptism.html">Baptism</a>
+        <a href="confirmation.html">Confirmation</a>
+        <a href="eucharist.html">Eucharist</a>
+        <a href="reconciliation.html">Reconciliation</a>
+        <a href="anointing.html">Anointing</a>
+        <a href="orders.html">Holy Orders</a>
+        <a href="matrimony.html">Matrimony</a>
+    </nav>
+
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-text">
+
+                <p class="small-title">
+                    WELCOME TO GROUP 6 CATECHETICAL WEBSITE
+                </p>
+
+                <h2>
+                    Discover the<br>
+                    Seven Sacraments
+                </h2>
+
+                <p>
+                    The Sacraments are sacred signs instituted by Christ and entrusted to the Church. 
+Through them, God gives us His grace and helps us grow in our relationship with Him. 
+	The Catholic Church celebrates Seven Sacraments, which accompany us Christians throughout important stages of our life.
+                </p>
+
+                <a class="button" href="#sacraments">
+                    Explore the Sacraments
+                </a>
+
+            </div>
+
+
+            <div class="hero-card">
+
+                <div class="cross">
+                    ✝
+                </div>
+
+                <h3>
+                   Grace ᢉ𐭩 Christ ᢉ𐭩 Church
+                </h3>
+
+                <p>
+                    "The sacraments are efficacious signs of grace,
+                    instituted by Christ and entrusted to the Church."
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section id="sacraments">
+
+            <p class="small-title">
+                THE JOURNEY OF FAITH
+            </p>
+
+            <h2>
+                Explore the Sacraments⟡ ݁₊ .
+            </h2>
+
+            <div class="sacrament-grid">
+
+                <a href="baptism.html" class="sacrament-card">
+                   <span>🤍</span>
+                    <h3>Baptism</h3>
+                    <p>The beginning of new life in Christ.</p>
+                </a>
+
+
+                <a href="confirmation.html" class="sacrament-card">
+                    <span>🤍</span>
+                    <h3>Confirmation</h3>
+                    <p>Strengthened by the Holy Spirit.</p>
+                </a>
+
+
+                <a href="eucharist.html" class="sacrament-card">
+                  <span>🤍</span>
+                    <h3>Eucharist</h3>
+                    <p>Christ present with us.</p>
+                </a>
+
+
+                <a href="reconciliation.html" class="sacrament-card">
+                   <span>🤍</span>
+                    <h3>Reconciliation</h3>
+                    <p>Experiencing God's mercy and forgiveness.</p>
+                </a>
+
+
+                <a href="anointing.html" class="sacrament-card">
+                    <span>🤍</span>
+                    <h3>Anointing of the Sick</h3>
+                    <p>Christ's comfort and healing presence.</p>
+                </a>
+
+
+                <a href="holy-orders.html" class="sacrament-card">
+                  <span>🤍</span>
+                    <h3>Holy Orders</h3>
+                    <p>A vocation of service to the Church.</p>
+                </a>
+
+
+                <a href="matrimony.html" class="sacrament-card">
+                   <span>🤍</span>
+                    <h3>Matrimony</h3>
+                    <p>A covenant of love and fidelity.</p>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <section class="about">
+
+            <h2>
+                Jesus, the Primordial Sacrament ˗ˏˋ ♡ ˎˊ˗
+            </h2>
+
+            <p>
+                Jesus Christ is the primordial sacrament because
+                He makes the invisible love of God visible to humanity.
+                Through Him, we encounter God's grace and salvation.
+            </p>
+
+            <a class="button" href="jesus.html">
+                Learn More
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <h3>
+            Our Catechetical Team ⤷ 6ˎˊ˗
+        </h3>
+
+        <p>
+            Abanes, Keishan Zamantha • 9-Honesty
+        </p>
+
+        <p>
+            Ituralde, Angelika • 9- Honesty
+        </p>
+
+        <p>
+            Magsino, Timmy • 9-Honesty
+        </p>
+
+        <p>
+            Villegas, Ruffy Nethaniel • 9-Honesty
+        </p>
+    </footer>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="backgroundMusic" loop preload="auto">
+    <source src="Awit ng Paghahangad Instrumental.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("backgroundMusic");
+
+// Remember where the song was
+const savedTime = localStorage.getItem("musicTime");
+
+if (savedTime) {
+    music.currentTime = parseFloat(savedTime);
+}
+
+// Start music after the first interaction
+function startMusic() {
+    music.play().then(() => {
+        const prompt = document.getElementById("musicPrompt");
+
+        if (prompt) {
+            prompt.style.display = "none";
+        }
+
+        localStorage.setItem("musicEnabled", "true");
+    }).catch(() => {});
+}
+
+document.addEventListener("click", startMusic);
+document.addEventListener("touchstart", startMusic);
+
+// Save the current position
+setInterval(() => {
+    if (!music.paused) {
+        localStorage.setItem("musicTime", music.currentTime);
+    }
+}, 200);
+</script>
+
+
+<!-- YOUTUBE VIDEO CONTROL -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+let players = [];
+
+function onYouTubeIframeAPIReady() {
+    document.querySelectorAll("iframe[src*='youtube.com/embed/']").forEach((iframe) => {
+        players.push(new YT.Player(iframe, {
+            events: {
+                onStateChange: function(event) {
+                    const music = document.getElementById("backgroundMusic");
+
+                    if (event.data === YT.PlayerState.PLAYING) {
+                        music.pause();
+                    }
+
+                    if (
+                        event.data === YT.PlayerState.ENDED ||
+                        event.data === YT.PlayerState.PAUSED
+                    ) {
+                        music.play().catch(() => {});
+                    }
+                }
+            }
+        }));
+    });
+}
+
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        music.pause();
+    }
+});
+
+window.addEventListener("pagehide", () => {
+    music.pause();
+});
+
+</script>
+
+</body>
+</html>

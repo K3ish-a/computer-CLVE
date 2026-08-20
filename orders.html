@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holy Orders | Sacraments</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="musicPrompt">
+    ♫⋆｡♪₊˚♬゚。Tap to enable background music
+</div>
+
+<header><div class="container nav"><a class="brand" href="index.html">✦ Sacraments</a><nav>
+<a href="index.html">Home</a>
+<a href="jesus.html">Jesus</a>
+<a href="baptism.html">Baptism</a>
+<a href="confirmation.html">Confirmation</a>
+<a href="eucharist.html">Eucharist</a>
+<a href="reconciliation.html">Penance</a>
+<a href="anointing.html">Anointing</a>
+<a href="orders.html">Holy Orders</a>
+<a href="matrimony.html">Matrimony</a>
+</nav></div></header>
+
+<main>
+<section class="page-hero"><div class="container"><div class="hero-mini">
+<div><div class="kicker">Sacrament of Vocation</div><h1>✦•┈๑⋅⋯Holy Orders⋯⋅๑┈•✦</h1>
+<p class="lead">the transformation of one that has been baptized from being a regular person to serving the Lord as being part of the Church. Some examples of these kinds of people are Lay Ministers, Bishops, and last but not the least, Priests. These people help out those who feel lost and don't know where to go. They tell us to always go to God whenever we have problems and God will always help us with it.</p></div>
+</div></div></section>
+<section class="section"><div class="container detail">
+<div class="info-box"><div class="kicker">Learn</div><h2>₊˚⊹ ᰔMeaning & celebration₊˚⊹ ᰔ</h2>
+<p>Holy Orders is the sacrament through which the Church’s ordained ministry is entrusted to bishops, priests, and deacons.</p>
+<ul><li><strong>Key sign:</strong> Laying on of hands</li><li><strong>Effect:</strong> Holy Orders configures ordained ministers for service to the Church and the proclamation of the Gospel.</li></ul>
+<div class="quote">The sacraments are encounters with Christ that draw the Church into a life of faith, worship, and mission.</div>
+<p><strong>Why it matters:</strong> This sacrament is not merely a ceremony; it points to God’s action and invites the Christian community to respond with faith and love.</p>
+</div>
+<div>
+<div class="icon">
+  <img src="images/photo8.jpg" alt="photo 8">
+</div>
+<div class="media" style="margin-top:18px"><h3>Short video</h3>
+ <iframe
+        width="100%"
+        height="240"
+        style="border:0;border-radius:15px"
+        src="https://www.youtube.com/embed/mCiy5ajOV6Q?enablejsapi=1"
+        title="The Sacrament of the Holy Orders"
+        allowfullscreen>
+    </iframe>
+
+    <p class="note">
+        Learn more about the Sacrament of Holy Orders
+    </p>
+
+</div>
+</div></section>
+</main>
+
+
+<footer>
+ <div class="container footer-grid">
+  <div><h3 style="color:#fff">✦.──Continue Your Journey of Faith──.✦</h3>
+  </div>
+ </div>
+</footer>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="backgroundMusic" loop preload="auto">
+    <source src="Awit ng Paghahangad Instrumental.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("backgroundMusic");
+
+// Remember where the song was
+const savedTime = localStorage.getItem("musicTime");
+
+if (savedTime) {
+    music.currentTime = parseFloat(savedTime);
+}
+
+// Start music after the first interaction
+function startMusic() {
+    music.play().then(() => {
+        const prompt = document.getElementById("musicPrompt");
+
+        if (prompt) {
+            prompt.style.display = "none";
+        }
+
+        localStorage.setItem("musicEnabled", "true");
+    }).catch(() => {});
+}
+
+document.addEventListener("click", startMusic);
+document.addEventListener("touchstart", startMusic);
+
+// Save the current position
+setInterval(() => {
+    if (!music.paused) {
+        localStorage.setItem("musicTime", music.currentTime);
+    }
+}, 200);
+</script>
+
+
+<!-- YOUTUBE VIDEO CONTROL -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+let players = [];
+
+function onYouTubeIframeAPIReady() {
+    document.querySelectorAll("iframe[src*='youtube.com/embed/']").forEach((iframe) => {
+        players.push(new YT.Player(iframe, {
+            events: {
+                onStateChange: function(event) {
+                    const music = document.getElementById("backgroundMusic");
+
+                    if (event.data === YT.PlayerState.PLAYING) {
+                        music.pause();
+                    }
+
+                    if (
+                        event.data === YT.PlayerState.ENDED ||
+                        event.data === YT.PlayerState.PAUSED
+                    ) {
+                        music.play().catch(() => {});
+                    }
+                }
+            }
+        }));
+    });
+}
+
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        music.pause();
+    }
+});
+
+window.addEventListener("pagehide", () => {
+    music.pause();
+});
+
+</script>
+
+</body>
+</html>
